@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{289B486F-B273-4C1B-82D4-4B4AB98B1942}</ProjectGuid>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <AssemblyTitle>PubSub.Messages</AssemblyTitle>
     <Product>PubSub.Messages</Product>
     <Copyright>Copyright ©  2016</Copyright>

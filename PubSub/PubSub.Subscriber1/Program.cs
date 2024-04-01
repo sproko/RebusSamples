@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using PubSub.Messages;
 using Rebus.Activation;
+using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Handlers;
 using Rebus.Logging;
@@ -19,13 +20,16 @@ namespace PubSub.Subscriber1
 
                 Configure.With(activator)
                     .Logging(l => l.ColoredConsole(minLevel: LogLevel.Warn))
-                    .Transport(t => t.UseMsmq("subscriber1"))
+                    //.Transport(t => t.UseMsmq("subscriber1"))
+                    .Transport(t => t.UseRabbitMq("amqp://guest:guest@localhost:5672/", "subscriber1"))
+
                     .Routing(r => r.TypeBased().MapAssemblyOf<StringMessage>("publisher"))
                     .Start();
 
                 activator.Bus.Subscribe<StringMessage>().Wait();
                 activator.Bus.Subscribe<DateTimeMessage>().Wait();
                 activator.Bus.Subscribe<TimeSpanMessage>().Wait();
+
 
                 Console.WriteLine("This is Subscriber 1");
                 Console.WriteLine("Press ENTER to quit");
